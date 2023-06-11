@@ -11,22 +11,28 @@ source:
 
 build:
   number: 1
-  skip: true  # [win or osx]
+  skip: true  # [osx]
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
-    - {{ compiler('fortran') }}
+    - {{ compiler('c') }}  # [not win]
+    - {{ compiler('cxx') }}  # [not win]
+    - {{ compiler('fortran') }}  # [not win]
+    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('m2w64_cxx') }}  # [win]
+    - {{ compiler('m2w64_fortran') }}  # [win] 
   host:
-    - libtool
-    - make  
+    - libtool  # [unix]
+    - make  # [unix]
     - python
     - numpy
     - scipy
     - qhull
     - mumps-seq
     - libopenblas
+    - m2-base  # [win]
+    - m2-diffutils  # [win]
+    - m2w64-make  # [win]
   run:
     - numpy
     - scipy

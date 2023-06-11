@@ -1,3 +1,5 @@
 *.pyc
 
+.vs/
+
 build_artifacts
